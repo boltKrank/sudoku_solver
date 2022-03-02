@@ -3,7 +3,8 @@ package main
 import "fmt"
 
 // Test data:
-// var puzzleInput = "2,8,x,4,5,x,6,x,x,x,5,x,6,9,x,x,x,7,x,x,x,1,8,x,x,3,x,9,x,x,x,x,4,1,x,x,7,2,x,9,x,1,x,5,6,x,x,4,7,x,x,x,x,2,x,6,x,x,4,9,x,x,x,8,x,x,x,1,5,x,6,x,x,x,3,x,7,6,x,2,1;"
+
+var puzzleInput = "2,8,0,4,5,0,6,0,0,0,5,0,6,9,0,0,0,7,0,0,0,1,8,0,0,3,0,9,0,0,0,0,4,1,0,0,7,2,0,9,0,1,0,5,6,0,0,4,7,0,0,0,0,2,0,6,0,0,4,9,0,0,0,8,0,0,0,1,5,0,6,0,0,0,3,0,7,6,0,2,1;"
 
 func main() {
 
@@ -12,9 +13,18 @@ func main() {
 	// Check inputted data for validity
 	// validatePuzzleInput(puzzleInput)
 
-	// Convert
-	// convert to grid: convertToGrid(array)
+	convertToGrid(puzzleInput)
 
 }
 
-// func convertToGrid(array a)
+// Make sure the inputted string is valid:
+func validatePuzzleInput(puzzleString string) {
+
+}
+
+// Converts a one line string into a 2d array
+func convertToGrid(puzzleString string) {
+
+	fmt.Println(puzzleString)
+
+}
