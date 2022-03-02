@@ -9,6 +9,22 @@ import (
 
 var puzzleInput = "2,8,0,4,5,0,6,0,0,0,5,0,6,9,0,0,0,7,0,0,0,1,8,0,0,3,0,9,0,0,0,0,4,1,0,0,7,2,0,9,0,1,0,5,6,0,0,4,7,0,0,0,0,2,0,6,0,0,4,9,0,0,0,8,0,0,0,1,5,0,6,0,0,0,3,0,7,6,0,2,1"
 
+// Constants:
+
+const width_size = 9
+const height_size = 9
+const section_size = 9
+
+// Structs:
+
+type number struct {
+	row_num     int
+	column_num  int
+	section_num int
+	finished    bool
+	possibles   []int
+}
+
 func main() {
 
 	fmt.Println("Sudoku solver...")
@@ -36,7 +52,8 @@ func validatePuzzleInput(puzzleString string) []string {
 // Converts a one line string into a 2d array
 func convertToGrid(puzzleString []string) {
 
-	// fmt.Println(puzzleString)
+	// Make it an array of number structs
+
 	gridDisplay(puzzleString)
 
 }
