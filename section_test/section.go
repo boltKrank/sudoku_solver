@@ -11,11 +11,8 @@ type number struct {
 	row_num     int
 	column_num  int
 	section_num int
-	finished    bool
+	value       string
 	possibles   []string //Make this a MAP
-	// members in row
-	// members in column
-	// members in section
 }
 
 func main() {
@@ -37,12 +34,8 @@ func main() {
 					grid[row-1][column-1].row_num = row - 1
 					grid[row-1][column-1].column_num = column - 1
 					grid[row-1][column-1].section_num = j + h
-					if numbers[iter] == "0" {
-						grid[row-1][column-1].finished = false
-					} else {
-						grid[row-1][column-1].finished = true
-					}
-
+					grid[row-1][column-1].value = numbers[iter]
+					iter++
 					row++
 				}
 			}
