@@ -26,11 +26,8 @@ type number struct {
 	row_num     int
 	column_num  int
 	section_num int
-	finished    bool
-	possibles   []string
-	// members in row
-	// members in column
-	// members in section
+	value       string
+	possibles   []string //Make this a MAP
 }
 
 func main() {
