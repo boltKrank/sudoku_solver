@@ -80,12 +80,12 @@ func convertToGrid(puzzleString []string) []number {
 					numberStructList = append(numberStructList, tempNumber)
 
 					iter++
-					row++
+					column++
 				}
 			}
 			fmt.Print("\n")
-			row = 1
-			column++
+			column = 1
+			row++
 		}
 	}
 
@@ -123,6 +123,50 @@ func gridDisplay(gridArray []number) {
 
 }
 
+func solveGrid(numberGrid []number) []number {
+
+	var tempNumberGrid []number = numberGrid
+
+	for i := range tempNumberGrid {
+
+		if tempNumberGrid[i].value != "0" {
+
+			var temp_row_num = tempNumberGrid[i].row_num
+			var temp_column_num = tempNumberGrid[i].column_num
+			var temp_section_num = tempNumberGrid[i].section_num
+			var temp_value_num = tempNumberGrid[i].value
+
+			// parse rows 	for h := 0; h <= 6; h += 3 {
+
+			for j := range tempNumberGrid {
+
+				if tempNumberGrid[j].value == "0" {
+					if (tempNumberGrid[j].row_num == temp_row_num) || (tempNumberGrid[j].column_num == temp_column_num) || (tempNumberGrid[j].section_num == temp_section_num) {
+
+						if val, ok := tempNumberGrid[j].possibles[temp_value_num]; ok {
+							delete(tempNumberGrid[j].possibles, val)
+						}
+						if len(tempNumberGrid[j].possibles) == 1 {
+							for k := range tempNumberGrid[j].possibles {
+								tempNumberGrid[j].value = k
+							}
+						}
+
+					}
+				}
+
+			}
+
+			// fmt.Println("Row-Col-Sec-Val: ", temp_row_num, "-", temp_column_num, "-", temp_section_num, "-", temp_value_num)
+
+		}
+
+	}
+
+	return tempNumberGrid
+
+}
+
 func main() {
 
 	fmt.Println("Sudoku solver...")
@@ -133,6 +177,24 @@ func main() {
 	// []string returned as []number (struct)
 	var numberStructGrid []number = convertToGrid(validatedNumbers)
 
+	// Text display of numbers
+	gridDisplay(numberStructGrid)
+
+	// Testing single sweeps:
+	fmt.Println("\nTest 1:")
+	numberStructGrid = solveGrid(numberStructGrid)
+	gridDisplay(numberStructGrid)
+
+	fmt.Println("\nTest 2:")
+	numberStructGrid = solveGrid(numberStructGrid)
+	gridDisplay(numberStructGrid)
+
+	fmt.Println("\nTest 3:")
+	numberStructGrid = solveGrid(numberStructGrid)
+	gridDisplay(numberStructGrid)
+
+	fmt.Println("\nTest 4:")
+	numberStructGrid = solveGrid(numberStructGrid)
 	gridDisplay(numberStructGrid)
 
 }
