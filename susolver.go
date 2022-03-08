@@ -7,7 +7,14 @@ import (
 
 // Test data:
 
-var puzzleInput = "2,8,0,4,5,0,6,0,0,0,5,0,6,9,0,0,0,7,0,0,0,1,8,0,0,3,0,9,0,0,0,0,4,1,0,0,7,2,0,9,0,1,0,5,6,0,0,4,7,0,0,0,0,2,0,6,0,0,4,9,0,0,0,8,0,0,0,1,5,0,6,0,0,0,3,0,7,6,0,2,1"
+// EASY:
+// var puzzleInput = "2,8,0,4,5,0,6,0,0,0,5,0,6,9,0,0,0,7,0,0,0,1,8,0,0,3,0,9,0,0,0,0,4,1,0,0,7,2,0,9,0,1,0,5,6,0,0,4,7,0,0,0,0,2,0,6,0,0,4,9,0,0,0,8,0,0,0,1,5,0,6,0,0,0,3,0,7,6,0,2,1"
+
+// EASY:
+// var puzzleInput = "0,0,0,2,6,0,7,0,1,6,8,0,0,7,0,0,9,0,1,9,0,0,0,4,5,0,0,8,2,0,1,0,0,0,4,0,0,0,4,6,0,2,9,0,0,0,5,0,0,0,3,0,2,8,0,0,9,3,0,0,0,7,4,0,4,0,0,5,0,0,3,6,7,0,3,0,1,8,0,0,0"
+
+// INTERMEDIATE:
+var puzzleInput = "0,2,0,6,0,8,0,0,0,5,8,0,0,0,9,7,0,0,0,0,0,0,4,0,0,0,0,3,7,0,0,0,0,5,0,0,6,0,0,0,0,0,0,0,4,0,0,8,0,0,0,0,1,3,0,0,0,0,2,0,0,0,0,0,0,9,8,0,0,0,3,6,0,0,0,3,0,6,0,9,0"
 
 // Structs:
 
@@ -206,6 +213,31 @@ func main() {
 	fmt.Println("\n\nUnsolved squares: ", remainingSquares)
 
 	fmt.Println("\nTest 4:")
+	numberStructGrid, remainingSquares = solveGrid(numberStructGrid)
+	gridDisplay(numberStructGrid)
+	fmt.Println("\n\nUnsolved squares: ", remainingSquares)
+
+	fmt.Println("\nTest 5:")
+	numberStructGrid, remainingSquares = solveGrid(numberStructGrid)
+	gridDisplay(numberStructGrid)
+	fmt.Println("\n\nUnsolved squares: ", remainingSquares)
+
+	fmt.Println("\nTest 6:")
+	numberStructGrid, remainingSquares = solveGrid(numberStructGrid)
+	gridDisplay(numberStructGrid)
+	fmt.Println("\n\nUnsolved squares: ", remainingSquares)
+
+	fmt.Println("\nTest 7:")
+	numberStructGrid, remainingSquares = solveGrid(numberStructGrid)
+	gridDisplay(numberStructGrid)
+	fmt.Println("\n\nUnsolved squares: ", remainingSquares)
+
+	fmt.Println("\nTest 8:")
+	numberStructGrid, remainingSquares = solveGrid(numberStructGrid)
+	gridDisplay(numberStructGrid)
+	fmt.Println("\n\nUnsolved squares: ", remainingSquares)
+
+	fmt.Println("\nTest 9:")
 	numberStructGrid, remainingSquares = solveGrid(numberStructGrid)
 	gridDisplay(numberStructGrid)
 	fmt.Println("\n\nUnsolved squares: ", remainingSquares)
