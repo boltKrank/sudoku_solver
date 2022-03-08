@@ -49,8 +49,6 @@ func convertToGrid(puzzleString []string) []number {
 	var iter int = 0
 	var numberStructList []number
 
-	//var grid [8][8]number
-
 	for h := 0; h <= 6; h += 3 {
 
 		for i := 1; i <= 3; i++ {
@@ -207,39 +205,55 @@ func main() {
 	gridDisplay(numberStructGrid)
 	fmt.Println("\n\nUnsolved squares: ", remainingSquares)
 
-	fmt.Println("\nTest 3:")
-	numberStructGrid, remainingSquares = solveGrid(numberStructGrid)
-	gridDisplay(numberStructGrid)
-	fmt.Println("\n\nUnsolved squares: ", remainingSquares)
+	fmt.Println("Possibilities status: ")
 
-	fmt.Println("\nTest 4:")
-	numberStructGrid, remainingSquares = solveGrid(numberStructGrid)
-	gridDisplay(numberStructGrid)
-	fmt.Println("\n\nUnsolved squares: ", remainingSquares)
+	fmt.Println("\nRow 1: ")
+	for p := range numberStructGrid {
+		if numberStructGrid[p].row_num == 1 {
+			fmt.Println(" ", numberStructGrid[p].possibles, " ")
+		}
+	}
 
-	fmt.Println("\nTest 5:")
-	numberStructGrid, remainingSquares = solveGrid(numberStructGrid)
-	gridDisplay(numberStructGrid)
-	fmt.Println("\n\nUnsolved squares: ", remainingSquares)
+	fmt.Println("\nColumn 3: ")
+	for p := range numberStructGrid {
+		if numberStructGrid[p].column_num == 3 {
+			fmt.Println(" ", numberStructGrid[p].possibles, " ")
+		}
+	}
 
-	fmt.Println("\nTest 6:")
-	numberStructGrid, remainingSquares = solveGrid(numberStructGrid)
-	gridDisplay(numberStructGrid)
-	fmt.Println("\n\nUnsolved squares: ", remainingSquares)
+	/* 	fmt.Println("\nTest 3:")
+	   	numberStructGrid, remainingSquares = solveGrid(numberStructGrid)
+	   	gridDisplay(numberStructGrid)
+	   	fmt.Println("\n\nUnsolved squares: ", remainingSquares)
 
-	fmt.Println("\nTest 7:")
-	numberStructGrid, remainingSquares = solveGrid(numberStructGrid)
-	gridDisplay(numberStructGrid)
-	fmt.Println("\n\nUnsolved squares: ", remainingSquares)
+	   	fmt.Println("\nTest 4:")
+	   	numberStructGrid, remainingSquares = solveGrid(numberStructGrid)
+	   	gridDisplay(numberStructGrid)
+	   	fmt.Println("\n\nUnsolved squares: ", remainingSquares)
 
-	fmt.Println("\nTest 8:")
-	numberStructGrid, remainingSquares = solveGrid(numberStructGrid)
-	gridDisplay(numberStructGrid)
-	fmt.Println("\n\nUnsolved squares: ", remainingSquares)
+	   	fmt.Println("\nTest 5:")
+	   	numberStructGrid, remainingSquares = solveGrid(numberStructGrid)
+	   	gridDisplay(numberStructGrid)
+	   	fmt.Println("\n\nUnsolved squares: ", remainingSquares)
 
-	fmt.Println("\nTest 9:")
-	numberStructGrid, remainingSquares = solveGrid(numberStructGrid)
-	gridDisplay(numberStructGrid)
-	fmt.Println("\n\nUnsolved squares: ", remainingSquares)
+	   	fmt.Println("\nTest 6:")
+	   	numberStructGrid, remainingSquares = solveGrid(numberStructGrid)
+	   	gridDisplay(numberStructGrid)
+	   	fmt.Println("\n\nUnsolved squares: ", remainingSquares)
 
+	   	fmt.Println("\nTest 7:")
+	   	numberStructGrid, remainingSquares = solveGrid(numberStructGrid)
+	   	gridDisplay(numberStructGrid)
+	   	fmt.Println("\n\nUnsolved squares: ", remainingSquares)
+
+	   	fmt.Println("\nTest 8:")
+	   	numberStructGrid, remainingSquares = solveGrid(numberStructGrid)
+	   	gridDisplay(numberStructGrid)
+	   	fmt.Println("\n\nUnsolved squares: ", remainingSquares)
+
+	   	fmt.Println("\nTest 9:")
+	   	numberStructGrid, remainingSquares = solveGrid(numberStructGrid)
+	   	gridDisplay(numberStructGrid)
+	   	fmt.Println("\n\nUnsolved squares: ", remainingSquares)
+	*/
 }
