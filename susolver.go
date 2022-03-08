@@ -123,7 +123,7 @@ func gridDisplay(gridArray []number) {
 
 }
 
-func solveGrid(numberGrid []number) []number {
+func solveGrid(numberGrid []number) ([]number, int) {
 
 	var tempNumberGrid []number = numberGrid
 
@@ -163,7 +163,15 @@ func solveGrid(numberGrid []number) []number {
 
 	}
 
-	return tempNumberGrid
+	var remaining int = 0
+
+	for r := range tempNumberGrid {
+		if tempNumberGrid[r].value == "0" {
+			remaining++
+		}
+	}
+
+	return tempNumberGrid, remaining
 
 }
 
@@ -176,25 +184,30 @@ func main() {
 
 	// []string returned as []number (struct)
 	var numberStructGrid []number = convertToGrid(validatedNumbers)
+	var remainingSquares int = 0
 
 	// Text display of numbers
 	gridDisplay(numberStructGrid)
 
 	// Testing single sweeps:
 	fmt.Println("\nTest 1:")
-	numberStructGrid = solveGrid(numberStructGrid)
+	numberStructGrid, remainingSquares = solveGrid(numberStructGrid)
 	gridDisplay(numberStructGrid)
+	fmt.Println("\n\nUnsolved squares: ", remainingSquares)
 
 	fmt.Println("\nTest 2:")
-	numberStructGrid = solveGrid(numberStructGrid)
+	numberStructGrid, remainingSquares = solveGrid(numberStructGrid)
 	gridDisplay(numberStructGrid)
+	fmt.Println("\n\nUnsolved squares: ", remainingSquares)
 
 	fmt.Println("\nTest 3:")
-	numberStructGrid = solveGrid(numberStructGrid)
+	numberStructGrid, remainingSquares = solveGrid(numberStructGrid)
 	gridDisplay(numberStructGrid)
+	fmt.Println("\n\nUnsolved squares: ", remainingSquares)
 
 	fmt.Println("\nTest 4:")
-	numberStructGrid = solveGrid(numberStructGrid)
+	numberStructGrid, remainingSquares = solveGrid(numberStructGrid)
 	gridDisplay(numberStructGrid)
+	fmt.Println("\n\nUnsolved squares: ", remainingSquares)
 
 }
