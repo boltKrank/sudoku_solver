@@ -5,20 +5,9 @@ import (
 	"strings"
 )
 
-// TODO: Make pointers for each struct, make an array of such pointers, and parse those points
-
 // Test data:
 
 var puzzleInput = "2,8,0,4,5,0,6,0,0,0,5,0,6,9,0,0,0,7,0,0,0,1,8,0,0,3,0,9,0,0,0,0,4,1,0,0,7,2,0,9,0,1,0,5,6,0,0,4,7,0,0,0,0,2,0,6,0,0,4,9,0,0,0,8,0,0,0,1,5,0,6,0,0,0,3,0,7,6,0,2,1"
-
-// Constants:
-
-const width_size = 9
-const height_size = 9
-const section_size = 9
-const row_type = 1
-const column_type = 2
-const section_type = 3
 
 // Structs:
 
@@ -27,17 +16,7 @@ type number struct {
 	column_num  int
 	section_num int
 	value       string
-	possibles   []string //Make this a MAP
-}
-
-func main() {
-
-	fmt.Println("Sudoku solver...")
-
-	var validatedNumbers []string = validatePuzzleInput(puzzleInput)
-
-	convertToGrid(validatedNumbers)
-
+	possibles   map[string]string
 }
 
 // Make sure the inputted string is valid:
@@ -55,41 +34,68 @@ func validatePuzzleInput(puzzleString string) []string {
 }
 
 // Converts a one line string into a 2d array
-func convertToGrid(puzzleString []string) {
+func convertToGrid(puzzleString []string) []number {
 
-	// Make it an array of number structs
+	// Convert to []number
+	var row int = 1
+	var column int = 1
+	var iter int = 0
+	var numberStructList []number
 
-	// Show row (1-9)
-	fmt.Println(showPart(puzzleString, row_type, 1))
+	//var grid [8][8]number
 
-	// Show column (1-9)
-	fmt.Println(showPart(puzzleString, column_type, 1))
+	for h := 0; h <= 6; h += 3 {
 
-	// Show section (1-9)
-	fmt.Println(showPart(puzzleString, section_type, 1))
+		for i := 1; i <= 3; i++ {
+			for j := 1; j <= 3; j++ {
+				for k := 1; k <= 3; k++ {
+					//fmt.Print("[", row, ",", column, "]: ", j+h, "  ", "iter: ", iter, " value: ", puzzleString[iter], " ")
 
-	gridDisplay(puzzleString)
+					var tempNumber number
 
-}
+					tempNumber.row_num = row
+					tempNumber.column_num = column
+					tempNumber.section_num = j + h
 
-//parameters: Array, row, column, section.
-func showPart(puzzleString []string, partType int, partArea int) string {
+					if puzzleString[iter] == "0" {
+						tempNumber.value = "0"
+						tempNumber.possibles = map[string]string{
+							"1": "1",
+							"2": "2",
+							"3": "3",
+							"4": "4",
+							"5": "5",
+							"6": "6",
+							"7": "7",
+							"8": "8",
+							"9": "9",
+						}
+					} else {
+						tempNumber.value = puzzleString[iter]
+						tempNumber.possibles = map[string]string{
+							puzzleString[iter]: puzzleString[iter],
+						}
+					}
 
-	var parType = ""
+					numberStructList = append(numberStructList, tempNumber)
 
-	if partType == row_type {
-		parType = "ROW"
-	} else if partType == column_type {
-		parType = "COLUMN"
-	} else if partType == section_type {
-		parType = "SECTION"
+					iter++
+					row++
+				}
+			}
+			fmt.Print("\n")
+			row = 1
+			column++
+		}
 	}
 
-	return parType
+	fmt.Println("numberStructList size: ", len(numberStructList))
+
+	return numberStructList
 
 }
 
-func gridDisplay(gridArray []string) {
+func gridDisplay(gridArray []number) {
 
 	var breakline string = "______________________"
 
@@ -109,10 +115,24 @@ func gridDisplay(gridArray []string) {
 			fmt.Print(" |")
 		}
 
-		fmt.Print(" ", gridArray[i])
+		fmt.Print(" ", gridArray[i].value)
 
 	}
 
 	fmt.Print("|\n |", breakline, "|")
+
+}
+
+func main() {
+
+	fmt.Println("Sudoku solver...")
+
+	// string returned as []string
+	var validatedNumbers []string = validatePuzzleInput(puzzleInput)
+
+	// []string returned as []number (struct)
+	var numberStructGrid []number = convertToGrid(validatedNumbers)
+
+	gridDisplay(numberStructGrid)
 
 }
